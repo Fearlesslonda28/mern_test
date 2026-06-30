@@ -1,6 +1,7 @@
 const express = require("express");
-const router = express.Router();
 const professionals = require("../data/professionals");
+
+const router = express.Router();
 
 router.get("/", (req, res) => {
   res.json(professionals);

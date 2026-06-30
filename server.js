@@ -1,21 +1,23 @@
-const express = require('express');
+const express = require("express");
+const professionals = require("./data/professionals");
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
-// connect to MongoDB
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/professionalsDB')
-.then(() => console.log('Connected to MongoDB'))
-.catch((err) => console.error('Could not connect to MongoDB', err));
-
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost:27017/professionalsDB")
+.then(() => {
+  console.log("Connected to MongoDB");
+}).catch((err) => {
+  console.error("Error connecting to MongoDB:", err);
+});
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
-// import routes
-const professionalsRoutes = require('./routes/professionalsRoutes');
+// routes
+const professionalsRoutes = require("./routes/professionalsRoutes");
 
 app.use("/api/professionals", professionalsRoutes);
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
